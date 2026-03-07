@@ -1,8 +1,19 @@
 /* Styles for HTML file */
 @font-face {
-    font-family: 'WiiManualFont';
-    /* This points to the file inside your new folder */
+    /* Reference the font from its directory. */
+    font-family: 'OperationGuideFont';
     src: url('./font/Rodin-Font.otf') format('opentype'); 
     font-weight: normal;
     font-style: normal;
+}
+html{
+    /* Set HTML background color to black */
+    background-color:black
+}
+h1{
+    /* Make the header color white and use the referenced font */
+    color:white;
+    font-family: 'OperationGuideFont', sans-serif;
+    font-weight: normal;
+    text-align: center;
 }
