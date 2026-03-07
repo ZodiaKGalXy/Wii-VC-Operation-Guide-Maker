@@ -36,6 +36,6 @@ p {
     height: 30px;
 }
 
-table th td {
+table, th, td {
     border: 1px solid white; border-collapse: collapse;
 }
