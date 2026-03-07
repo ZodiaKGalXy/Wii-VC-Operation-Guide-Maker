@@ -1,1 +1,8 @@
 /* Styles for HTML file */
+@font-face {
+    font-family: 'WiiManualFont';
+    /* This points to the file inside your new folder */
+    src: url('./font/Rodin-Font.otf') format('opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
