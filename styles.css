@@ -8,11 +8,11 @@
 }
 html{
     /* Set HTML background color to black */
-    background-color:black
+    background-color:white
 }
 h1{
     /* Make the header color white and use the referenced font */
-    color:white;
+    color:black;
     font-family: 'OperationGuideFont', sans-serif;
     font-weight: normal;
     text-align: left;
@@ -20,7 +20,7 @@ h1{
 
 p {
     /* Make the paragraph color white and use the referenced font */
-    color:white;
+    color:black;
     font-family: 'OperationGuideFont', sans-serif;
     font-weight: normal;
     text-align: left;
@@ -37,5 +37,5 @@ p {
 }
 
 table, th, td {
-    border: 1px solid white; border-collapse: collapse;
+    border: 1px solid black; border-collapse: collapse;
 }
