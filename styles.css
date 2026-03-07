@@ -15,5 +15,27 @@ h1{
     color:white;
     font-family: 'OperationGuideFont', sans-serif;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
+}
+
+p {
+    /* Make the paragraph color white and use the referenced font */
+    color:white;
+    font-family: 'OperationGuideFont', sans-serif;
+    font-weight: normal;
+    text-align: left;
+}
+
+.Image-Column{
+    width: 45px;
+    height: 30px;
+}
+
+.Text-Column{
+    width: 250px;
+    height: 30px;
+}
+
+table th td {
+    border: 1px solid white; border-collapse: collapse;
 }
