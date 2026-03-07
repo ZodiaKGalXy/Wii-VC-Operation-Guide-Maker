@@ -29,12 +29,23 @@ p {
 .Image-Column{
     width: 45px;
     height: 30px;
+    background-color: blue;
 }
 
 .Text-Column{
     width: 250px;
     height: 30px;
 }
+
+.Text-Column-Font{
+    font-family: 'OperationGuideFont', sans-serif;
+    font-weight: normal;
+}
+
+.Text-Row-Color{
+    background-color: red;
+}
+
 
 table, th, td {
     border: 1px solid black; border-collapse: collapse;
