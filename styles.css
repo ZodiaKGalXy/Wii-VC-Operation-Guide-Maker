@@ -11,16 +11,17 @@ html{
     background-color:white
 }
 h1{
-    /* Make the header color white and use the referenced font */
+    /* Properties for the header element */
     color:black;
     font-family: 'OperationGuideFont', sans-serif;
     font-weight: normal;
     font-size: 20px;
     text-align: left;
+    margin: 14px;
 }
 
 p {
-    /* Make the paragraph color white and use the referenced font */
+    /* Properties for the paragraph */
     color:black;
     font-family: 'OperationGuideFont', sans-serif;
     font-weight: normal;
@@ -28,12 +29,14 @@ p {
 }
 
 .Image-Column{
+    /* Properties of the column for images */
     width: 45px;
     height: 30px;
     background-color: blue;
 }
 
 .Image-Cell{
+    /* Properties for any image in their column */
     max-width: 30px;
     height: auto;
     display: block;
@@ -41,23 +44,27 @@ p {
 }
 
 .Text-Column{
+    /* Properties of the column for text */
     width: 250px;
     height: 30px;
     padding-left: 10px;
 }
 
 .Text-Column-Font{
+    /* Properties of any text in their columns */
     font-family: 'OperationGuideFont', sans-serif;
     font-weight: normal;
     text-align: left;
 }
 
 .Text-Row-Color{
+    /* Background color for the first row of the table. */
     background-color: red;
 }
 
 
 table, th, td {
+    /* Properties for the created table */
     border: 1px solid black;
     border-collapse: collapse;
     table-layout: fixed;
