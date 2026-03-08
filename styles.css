@@ -43,6 +43,13 @@ p {
     margin: auto;
 }
 
+.Input-Column{
+    /* Properties of the column for input */
+    width: 250px;
+    height: 30px;
+    padding-left: 10px;
+}
+
 .Text-Column{
     /* Properties of the column for text */
     width: 250px;
