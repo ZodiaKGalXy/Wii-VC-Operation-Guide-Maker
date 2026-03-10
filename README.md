@@ -7,6 +7,8 @@ The tool has icons ranging from the Wii Remote and Classic Controller, no Nunchu
 
 It's a simple website, but also comes with these features:
 - Icon recongition for user input
-- Editable Table Cells
+- Editable table cells
+- Screenshot box margin
 - _NOTE: More features will be added soon._
 
+Visit the website here: [https://zodiakgalxy.github.io/Wii-VC-Operation-Guide-Maker/](https://zodiakgalxy.github.io/Wii-VC-Operation-Guide-Maker/)
