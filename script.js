@@ -3,8 +3,7 @@
  * Creation date: 2025-03-08
  * Contributed for: The WiiMart Team
  * 
- * This JS file contains logic for auto-assigning the "User Input"
- * text feild with their according image. Ex. (A) = Wii Remote A
+ * This JS file contains logic for the HTML file.
  */
 
 "use strict";
@@ -33,6 +32,7 @@ const cellData = [
     { imageUrl: "./img/WiiMinusButton.png", text: "Minus Button" }
 ];
 
+// Fills the input cells with the corresponding text based on the image in the same row.
 function fillTextCellFromImage() {
     document.addEventListener('DOMContentLoaded', function() {
         // Select all rows in the table body
@@ -61,5 +61,21 @@ function fillTextCellFromImage() {
     });
 }
 
-// Call the function to fill text cells based on images
-fillTextCellFromImage();
+// Prevents the Enter key fro being pressed in all text cells.
+function noEnterKeyInCells() {
+    const editableCells = document.querySelectorAll('[contenteditable="true"]');
+    
+    editableCells.forEach(cell => {
+        cell.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+            }
+        });
+    });
+}
+
+// Call all made functions here.
+function script() {
+        fillTextCellFromImage();
+        noEnterKeyInCells();
+}
