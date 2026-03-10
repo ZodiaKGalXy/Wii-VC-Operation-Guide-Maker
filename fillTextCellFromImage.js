@@ -47,12 +47,8 @@ function fillTextCellFromImage() {
                 const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
                 const relativeSrc = './' + fullSrc.replace(baseUrl, '');  // Prepend './' to match cellData
 
-                console.log('Image src:', img.src);  // Debug: Check full src
-                console.log('Calculated relativeSrc:', relativeSrc);  // Debug: Check relative path
-
                 // Find the matching entry in cellData
                 const data = cellData.find(item => item.imageUrl === relativeSrc);
-                console.log('Matching data:', data);  // Debug: Check if a match is found
                 if (data) {
                     // Update the input cell with the matching text
                     const inputCell = row.querySelector('.Input-Column');

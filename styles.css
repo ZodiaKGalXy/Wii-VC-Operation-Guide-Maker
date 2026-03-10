@@ -15,9 +15,11 @@ h1{
     color:black;
     font-family: 'OperationGuideFont', sans-serif;
     font-weight: normal;
-    font-size: 20px;
+    font-size: 17px;
     text-align: left;
-    margin: 14px;
+    top: 0px;
+    left: 0px;
+    margin: 1px;
 }
 
 p {
@@ -30,14 +32,14 @@ p {
 
 .Image-Column{
     /* Properties of the column for images */
-    width: 45px;
+    width: 35px;
     height: 30px;
     background-color: blue;
 }
 
 .Image-Cell{
     /* Properties for any image in their column */
-    max-width: 30px;
+    max-width: 26px;
     height: auto;
     display: block;
     margin: auto;
@@ -45,14 +47,14 @@ p {
 
 .Input-Column{
     /* Properties of the column for input */
-    width: 250px;
+    width: 235px;
     height: 30px;
     padding-left: 10px;
 }
 
 .Text-Column{
     /* Properties of the column for text */
-    width: 250px;
+    width: 235px;
     height: 30px;
     padding-left: 10px;
 }
@@ -75,4 +77,20 @@ table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
     table-layout: fixed;
+}
+
+.screenshot-box {
+    /* Properties for a box of which users have the limit screenshot area. */
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 556px;
+    height: 259px;
+    border-right: 1px dashed red;
+    border-bottom: 1px dashed red;
+    border-top: none;
+    border-left: none;
+    background: transparent;
+    box-sizing: border-box;
+    pointer-events: none;
 }
