@@ -34,34 +34,32 @@ const cellData = [
 
 // Fills the input cells with the corresponding text based on the image in the same row.
 function fillTextCellFromImage() {
-    document.addEventListener('DOMContentLoaded', function() {
-        // Select all rows in the table body
-        const rows = document.querySelectorAll('tbody tr');
+    // Select all rows in the table body
+    const rows = document.querySelectorAll('tbody tr');
 
-        rows.forEach(row => {
-            // Find the image in the current row
-            const img = row.querySelector('.Image-Cell');
-            if (img) {
-                // Get the image source (full URL) and convert to relative path
-                const fullSrc = img.src;
-                const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
-                const relativeSrc = './' + fullSrc.replace(baseUrl, '');  // Prepend './' to match cellData
+    rows.forEach(row => {
+        // Find the image in the current row
+        const img = row.querySelector('.Image-Cell');
+        if (img) {
+            // Get the image source (full URL) and convert to relative path
+            const fullSrc = img.src;
+            const baseUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/');
+            const relativeSrc = './' + fullSrc.replace(baseUrl, '');  // Prepend './' to match cellData
 
-                // Find the matching entry in cellData
-                const data = cellData.find(item => item.imageUrl === relativeSrc);
-                if (data) {
-                    // Update the input cell with the matching text
-                    const inputCell = row.querySelector('.Input-Column');
-                    if (inputCell) {
-                        inputCell.textContent = data.text;
-                    }
+            // Find the matching entry in cellData
+            const data = cellData.find(item => item.imageUrl === relativeSrc);
+            if (data) {
+                // Update the input cell with the matching text
+                const inputCell = row.querySelector('.Input-Column');
+                if (inputCell) {
+                    inputCell.textContent = data.text;
                 }
             }
-        });
+        }
     });
 }
 
-// Prevents the Enter key fro being pressed in all text cells.
+// Prevents the Enter key from being pressed in all text cells.
 function noEnterKeyInCells() {
     const editableCells = document.querySelectorAll('[contenteditable="true"]');
     
@@ -79,3 +77,6 @@ function script() {
         fillTextCellFromImage();
         noEnterKeyInCells();
 }
+
+// Execute the script when the file loads
+script();
