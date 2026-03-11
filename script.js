@@ -1,7 +1,8 @@
 /* 
  * Created by: ZodiaKGalXy
+ * Assisted with: GitHub Copilot
  * Creation date: 2025-03-08
- * Contributed for: The WiiMart Team
+ * Contributed for: WiiMart, and the Wii Homebrew Community
  * 
  * This JS file contains logic for the HTML file.
  */
@@ -72,10 +73,67 @@ function noEnterKeyInCells() {
     });
 }
 
+// Adds a new row to the table body with a default structure (placeholder image and empty editable cells).
+function addRow() {
+    const tbody = document.querySelector('tbody');
+    if (!tbody) return;  // Safety check
+
+    // Create a new row element
+    const newRow = document.createElement('tr');
+
+    // Create the image cell (using a default image, e.g., the first in cellData)
+    const imageCell = document.createElement('td');
+    imageCell.className = 'Image-Column';
+    const img = document.createElement('img');
+    img.className = 'Image-Cell';
+    img.src = cellData[0].imageUrl;  // Default to first image; change as needed
+    img.alt = cellData[0].text;
+    imageCell.appendChild(img);
+    newRow.appendChild(imageCell);
+
+    // Create the first editable text cell
+    const inputCell = document.createElement('td');
+    inputCell.className = 'Input-Column Text-Column-Font';
+    inputCell.contentEditable = 'true';
+    newRow.appendChild(inputCell);
+
+    // Create the second editable text cell
+    const resultCell = document.createElement('td');
+    resultCell.className = 'Text-Column Text-Column-Font';
+    resultCell.contentEditable = 'true';
+    newRow.appendChild(resultCell);
+
+    // Append the new row to the tbody
+    tbody.appendChild(newRow);
+
+    // Re-run functions to apply logic to the new row (e.g., fill text, prevent Enter)
+    fillTextCellFromImage();
+    noEnterKeyInCells();
+}
+
+// Removes the last row from the table body, if any exist.
+function removeRow() {
+    const tbody = document.querySelector('tbody');
+    if (!tbody) return;
+
+    const rows = tbody.querySelectorAll('tr');
+    if (rows.length > 0) {
+        tbody.removeChild(rows[rows.length - 1]);  // Remove the last row
+    } else {
+        alert('No rows to remove!');  // Optional: Prevent removal if no rows
+    }
+}
+
 // Call all made functions here.
 function script() {
-        fillTextCellFromImage();
-        noEnterKeyInCells();
+    fillTextCellFromImage();
+    noEnterKeyInCells();
+
+    // Add event listeners for the buttons
+    const addBtn = document.getElementById('add-row-btn');
+    const removeBtn = document.getElementById('remove-row-btn');
+    if (addBtn) addBtn.addEventListener('click', addRow);
+    if (removeBtn) removeBtn.addEventListener('click', removeRow);
 }
 
 // Execute the script when the file loads
