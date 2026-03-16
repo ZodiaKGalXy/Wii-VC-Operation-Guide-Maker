@@ -19,7 +19,8 @@ h1{
     text-align: left;
     top: 0px;
     left: 0px;
-    margin: 1px;
+    margin-top: -10px;
+    margin-bottom: -3px;
 }
 
 p {
@@ -95,8 +96,21 @@ table, th, td {
     pointer-events: none;
 }
 
-#add-row-btn, #remove-row-btn {
-    margin-top: 20px;
-    margin-bottom: 10px;
+#add-row-btn {
+    /* Properties for the add button style */
+    position: absolute;
+    top: 270px;
+    left: 10px;
     padding: 8px 16px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+#remove-row-btn {
+    /* Properties for the remove button style */
+    position: absolute;
+    top: 270px;
+    left: 110px;
+    padding: 8px 16px;
+    margin-top: 0;
+    margin-bottom: 10px;
 }

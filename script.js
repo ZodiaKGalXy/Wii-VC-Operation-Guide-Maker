@@ -76,7 +76,14 @@ function noEnterKeyInCells() {
 // Adds a new row to the table body with a default structure (placeholder image and empty editable cells).
 function addRow() {
     const tbody = document.querySelector('tbody');
-    if (!tbody) return;  // Safety check
+    if (!tbody) return;
+
+    // The maximum number of rows is 6.
+    const rows = tbody.querySelectorAll('tr');
+    if (rows.length >= 5) {
+        alert('Can\'t add more rows.');
+        return;
+    }
 
     // Create a new row element
     const newRow = document.createElement('tr');
@@ -116,11 +123,12 @@ function removeRow() {
     const tbody = document.querySelector('tbody');
     if (!tbody) return;
 
+    // The minimum number of rows is 2.
     const rows = tbody.querySelectorAll('tr');
-    if (rows.length > 0) {
+    if (rows.length > 2) {
         tbody.removeChild(rows[rows.length - 1]);  // Remove the last row
     } else {
-        alert('No rows to remove!');  // Optional: Prevent removal if no rows
+        alert('Can\'t remove more rows!');  // Optional: Prevent removal if no rows
     }
 }
 
