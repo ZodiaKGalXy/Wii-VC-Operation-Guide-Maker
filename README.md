@@ -9,6 +9,7 @@ It's a simple website, but also comes with these features:
 - Icon recongition for user input
 - Editable table cells
 - Screenshot box margin
+- Drag and Drop images box
 - _NOTE: More features will be added soon._
 
 Visit the website here: [https://zodiakgalxy.github.io/Wii-VC-Operation-Guide-Maker/](https://zodiakgalxy.github.io/Wii-VC-Operation-Guide-Maker/)
