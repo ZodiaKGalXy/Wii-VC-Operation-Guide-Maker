@@ -2,7 +2,7 @@
  * Created by: ZodiaKGalXy
  * Assisted with: GitHub Copilot
  * Creation date: 2025-03-08
- * Contributed for: WiiMart, and the Wii Homebrew Community
+ * Contributed for: The Wii Homebrew Community
  * 
  * This JS file contains logic for the HTML file.
  */
@@ -91,11 +91,50 @@ function addRow() {
     // Create the image cell (using a default image, e.g., the first in cellData)
     const imageCell = document.createElement('td');
     imageCell.className = 'Image-Column';
+    imageCell.contentEditable = 'true';  // Make the image cell editable
     const img = document.createElement('img');
     img.className = 'Image-Cell';
     img.src = cellData[0].imageUrl;  // Default to first image; change as needed
     img.alt = cellData[0].text;
     imageCell.appendChild(img);
+
+    // Make the new image cell droppable
+    imageCell.addEventListener('dragover', e => {
+        e.preventDefault();  // Allow drop
+    });
+    imageCell.addEventListener('drop', e => {
+        e.preventDefault();
+        const droppedSrc = e.dataTransfer.getData('text/plain');
+        if (droppedSrc) {
+            // Update the img src in the dropped cell
+            const img = imageCell.querySelector('.Image-Cell');
+            if (img) {
+                img.src = droppedSrc;
+                // Update alt text if needed
+                const data = cellData.find(item => item.imageUrl === droppedSrc);
+                if (data) img.alt = data.text;
+            }
+            // Update the text in the User Input column for this row
+            fillTextCellFromImage();  // Re-run to update text based on new image
+        }
+    });
+
+    // Add paste listener for editing
+    imageCell.addEventListener('paste', e => {
+        e.preventDefault();
+        const text = e.clipboardData.getData('text/plain');
+        if (text) {
+            const img = imageCell.querySelector('.Image-Cell');
+            if (img) {
+                img.src = text;
+                // Update alt if possible
+                const data = cellData.find(item => item.imageUrl === text);
+                if (data) img.alt = data.text;
+            }
+            fillTextCellFromImage();
+        }
+    });
+
     newRow.appendChild(imageCell);
 
     // Create the first editable text cell
@@ -132,10 +171,84 @@ function removeRow() {
     }
 }
 
+// Populate the image palette with draggable images from cellData
+function populatePalette() {
+    const palette = document.getElementById('image-palette');
+    if (!palette) return;
+
+    cellData.forEach(item => {
+        const img = document.createElement('img');
+        img.src = item.imageUrl;
+        img.alt = item.text;
+        img.className = 'palette-image';  // Optional: Add a class for styling
+        img.draggable = true;  // Make it draggable
+        img.addEventListener('dragstart', handleDragStart);
+        palette.appendChild(img);
+    });
+}
+
+// Handle drag start for palette images
+function handleDragStart(e) {
+    // Store the image source in the data transfer
+    e.dataTransfer.setData('text/plain', e.target.src);
+}
+
+// Make image cells droppable and handle drops
+function makeCellsDroppable() {
+    const imageCells = document.querySelectorAll('.Image-Column');
+
+    imageCells.forEach(cell => {
+        cell.addEventListener('dragover', e => {
+            e.preventDefault();  // Allow drop
+        });
+
+        cell.addEventListener('drop', e => {
+            e.preventDefault();
+            const droppedSrc = e.dataTransfer.getData('text/plain');
+            if (droppedSrc) {
+                // Update the img src in the dropped cell
+                const img = cell.querySelector('.Image-Cell');
+                if (img) {
+                    img.src = droppedSrc;
+                    // Update alt text if needed (optional)
+                    const data = cellData.find(item => item.imageUrl === droppedSrc);
+                    if (data) img.alt = data.text;
+                }
+                // Update the text in the User Input column for this row
+                fillTextCellFromImage();  // Re-run to update text based on new image
+            }
+        });
+
+        // Add paste listener for editing
+        cell.addEventListener('paste', e => {
+            e.preventDefault();
+            const text = e.clipboardData.getData('text/plain');
+            if (text) {
+                const img = cell.querySelector('.Image-Cell');
+                if (img) {
+                    img.src = text;
+                    // Update alt if possible
+                    const data = cellData.find(item => item.imageUrl === text);
+                    if (data) img.alt = data.text;
+                }
+                fillTextCellFromImage();
+            }
+        });
+    });
+}
+
 // Call all made functions here.
 function script() {
     fillTextCellFromImage();
     noEnterKeyInCells();
+    populatePalette();
+    makeCellsDroppable();
+
+    // Make all image columns editable
+    const imageColumns = document.querySelectorAll('.Image-Column');
+    imageColumns.forEach(cell => {
+        cell.contentEditable = 'true';
+    });
 
     // Add event listeners for the buttons
     const addBtn = document.getElementById('add-row-btn');

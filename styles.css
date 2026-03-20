@@ -114,3 +114,19 @@ table, th, td {
     margin-top: 0;
     margin-bottom: 10px;
 }
+
+.palette {
+    position: absolute;
+    top: 325px;
+    left: 10px;
+    width: 350px;
+    height: 170px;
+    background:red;
+}
+
+.palette-image {
+    width: 26px;
+    height: auto;
+    margin: 5px;
+    cursor: grab; 
+}
