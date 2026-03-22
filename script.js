@@ -22,12 +22,12 @@ const cellData = [
     { imageUrl: "./img/WiiClassicSTART.png", text: "Classic Controller START" },
     { imageUrl: "./img/WiiClassicSELECT.png", text: "Classic Controller SELECT" },
     // Wii Remote Buttons
-    { imageUrl: "./img/WiiRemote-DPAD.png", text: "Wii Remote D-Pad" },
     { imageUrl: "./img/WiiRemoteA.png", text: "Wii Remote A" },
     { imageUrl: "./img/WiiRemoteB.png", text: "Wii Remote B" },
     { imageUrl: "./img/WiiRemote1.png", text: "Wii Remote 1" },
     { imageUrl: "./img/WiiRemote2.png", text: "Wii Remote 2" },
     // Other Buttons
+    { imageUrl: "./img/WiiRemote-DPAD.png", text: "Directional Pad" },
     { imageUrl: "./img/WiiHomeButton.png", text: "Home Button" },
     { imageUrl: "./img/WiiPlusButton.png", text: "Plus Button" },
     { imageUrl: "./img/WiiMinusButton.png", text: "Minus Button" }
@@ -73,12 +73,12 @@ function noEnterKeyInCells() {
     });
 }
 
-// Adds a new row to the table body with a default structure (placeholder image and empty editable cells).
+// Adds a new row to the table body with empty cells (no default image or text).
 function addRow() {
     const tbody = document.querySelector('tbody');
     if (!tbody) return;
 
-    // The maximum number of rows is 6.
+    // The maximum number of rows is 5, not counting the header row.
     const rows = tbody.querySelectorAll('tr');
     if (rows.length >= 5) {
         alert('Can\'t add more rows.');
@@ -88,17 +88,12 @@ function addRow() {
     // Create a new row element
     const newRow = document.createElement('tr');
 
-    // Create the image cell (using a default image, e.g., the first in cellData)
+    // Create the image cell (empty, no default image)
     const imageCell = document.createElement('td');
     imageCell.className = 'Image-Column';
     imageCell.contentEditable = 'true';  // Make the image cell editable
-    const img = document.createElement('img');
-    img.className = 'Image-Cell';
-    img.src = cellData[0].imageUrl;  // Default to first image; change as needed
-    img.alt = cellData[0].text;
-    imageCell.appendChild(img);
 
-    // Make the new image cell droppable
+    // Add drag-over and drop listeners for future image replacement
     imageCell.addEventListener('dragover', e => {
         e.preventDefault();  // Allow drop
     });
@@ -106,16 +101,18 @@ function addRow() {
         e.preventDefault();
         const droppedSrc = e.dataTransfer.getData('text/plain');
         if (droppedSrc) {
-            // Update the img src in the dropped cell
-            const img = imageCell.querySelector('.Image-Cell');
-            if (img) {
-                img.src = droppedSrc;
-                // Update alt text if needed
-                const data = cellData.find(item => item.imageUrl === droppedSrc);
-                if (data) img.alt = data.text;
+            // Create or update the img element
+            let img = imageCell.querySelector('.Image-Cell');
+            if (!img) {
+                img = document.createElement('img');
+                img.className = 'Image-Cell';
+                imageCell.appendChild(img);
             }
-            // Update the text in the User Input column for this row
-            fillTextCellFromImage();  // Re-run to update text based on new image
+            img.src = droppedSrc;
+            // Update alt text if needed
+            const data = cellData.find(item => item.imageUrl === droppedSrc);
+            if (data) img.alt = data.text;
+            fillTextCellFromImage();
         }
     });
 
@@ -124,36 +121,44 @@ function addRow() {
         e.preventDefault();
         const text = e.clipboardData.getData('text/plain');
         if (text) {
-            const img = imageCell.querySelector('.Image-Cell');
-            if (img) {
-                img.src = text;
-                // Update alt if possible
-                const data = cellData.find(item => item.imageUrl === text);
-                if (data) img.alt = data.text;
+            let img = imageCell.querySelector('.Image-Cell');
+            if (!img) {
+                img = document.createElement('img');
+                img.className = 'Image-Cell';
+                imageCell.appendChild(img);
             }
+            img.src = text;
+            // Update alt if possible
+            const data = cellData.find(item => item.imageUrl === text);
+            if (data) img.alt = data.text;
             fillTextCellFromImage();
         }
     });
 
     newRow.appendChild(imageCell);
 
-    // Create the first editable text cell
+    // Create the first editable text cell (empty)
     const inputCell = document.createElement('td');
     inputCell.className = 'Input-Column Text-Column-Font';
     inputCell.contentEditable = 'true';
+    // Prevent drops on text cells
+    inputCell.addEventListener('dragover', e => e.preventDefault());
+    inputCell.addEventListener('drop', e => e.preventDefault());
     newRow.appendChild(inputCell);
 
-    // Create the second editable text cell
+    // Create the second editable text cell (empty)
     const resultCell = document.createElement('td');
     resultCell.className = 'Text-Column Text-Column-Font';
     resultCell.contentEditable = 'true';
+    // Prevent drops on text cells
+    resultCell.addEventListener('dragover', e => e.preventDefault());
+    resultCell.addEventListener('drop', e => e.preventDefault());
     newRow.appendChild(resultCell);
 
     // Append the new row to the tbody
     tbody.appendChild(newRow);
 
-    // Re-run functions to apply logic to the new row (e.g., fill text, prevent Enter)
-    fillTextCellFromImage();
+    // Re-run functions to apply logic to the new row (prevent Enter)
     noEnterKeyInCells();
 }
 
@@ -162,9 +167,9 @@ function removeRow() {
     const tbody = document.querySelector('tbody');
     if (!tbody) return;
 
-    // The minimum number of rows is 2.
+    // The minimum number of rows is 1, not counting the header row.
     const rows = tbody.querySelectorAll('tr');
-    if (rows.length > 2) {
+    if (rows.length > 1) {
         tbody.removeChild(rows[rows.length - 1]);  // Remove the last row
     } else {
         alert('Can\'t remove more rows!');  // Optional: Prevent removal if no rows
@@ -195,7 +200,7 @@ function handleDragStart(e) {
 
 // Make image cells droppable and handle drops
 function makeCellsDroppable() {
-    const imageCells = document.querySelectorAll('.Image-Column');
+    const imageCells = document.querySelectorAll('td.Image-Column');
 
     imageCells.forEach(cell => {
         cell.addEventListener('dragover', e => {
@@ -206,14 +211,17 @@ function makeCellsDroppable() {
             e.preventDefault();
             const droppedSrc = e.dataTransfer.getData('text/plain');
             if (droppedSrc) {
-                // Update the img src in the dropped cell
-                const img = cell.querySelector('.Image-Cell');
-                if (img) {
-                    img.src = droppedSrc;
-                    // Update alt text if needed (optional)
-                    const data = cellData.find(item => item.imageUrl === droppedSrc);
-                    if (data) img.alt = data.text;
+                // Create or update the img element
+                let img = cell.querySelector('.Image-Cell');
+                if (!img) {
+                    img = document.createElement('img');
+                    img.className = 'Image-Cell';
+                    cell.appendChild(img);
                 }
+                img.src = droppedSrc;
+                // Update alt text if needed
+                const data = cellData.find(item => item.imageUrl === droppedSrc);
+                if (data) img.alt = data.text;
                 // Update the text in the User Input column for this row
                 fillTextCellFromImage();  // Re-run to update text based on new image
             }
@@ -224,13 +232,16 @@ function makeCellsDroppable() {
             e.preventDefault();
             const text = e.clipboardData.getData('text/plain');
             if (text) {
-                const img = cell.querySelector('.Image-Cell');
-                if (img) {
-                    img.src = text;
-                    // Update alt if possible
-                    const data = cellData.find(item => item.imageUrl === text);
-                    if (data) img.alt = data.text;
+                let img = cell.querySelector('.Image-Cell');
+                if (!img) {
+                    img = document.createElement('img');
+                    img.className = 'Image-Cell';
+                    cell.appendChild(img);
                 }
+                img.src = text;
+                // Update alt if possible
+                const data = cellData.find(item => item.imageUrl === text);
+                if (data) img.alt = data.text;
                 fillTextCellFromImage();
             }
         });
@@ -244,10 +255,17 @@ function script() {
     populatePalette();
     makeCellsDroppable();
 
-    // Make all image columns editable
-    const imageColumns = document.querySelectorAll('.Image-Column');
+    // Make all image columns editable (only td, not th)
+    const imageColumns = document.querySelectorAll('td.Image-Column');
     imageColumns.forEach(cell => {
         cell.contentEditable = 'true';
+    });
+
+    // Prevent drops on text columns
+    const textColumns = document.querySelectorAll('.Input-Column, .Text-Column');
+    textColumns.forEach(cell => {
+        cell.addEventListener('dragover', e => e.preventDefault());
+        cell.addEventListener('drop', e => e.preventDefault());
     });
 
     // Add event listeners for the buttons
