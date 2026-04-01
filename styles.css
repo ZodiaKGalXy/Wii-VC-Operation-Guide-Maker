@@ -23,8 +23,8 @@ h1{
     margin-bottom: -3px;
 }
 
-p {
-    /* Properties for the paragraph */
+p, label {
+    /* Properties for the paragraph and label elements */
     color:black;
     font-family: 'OperationGuideFont', sans-serif;
     font-weight: normal;
@@ -104,6 +104,7 @@ table, th, td {
     padding: 8px 16px;
     margin-top: 0;
     margin-bottom: 10px;
+    border-radius: 20px;
 }
 #remove-row-btn {
     /* Properties for the remove button style */
@@ -113,20 +114,40 @@ table, th, td {
     padding: 8px 16px;
     margin-top: 0;
     margin-bottom: 10px;
+    border-radius: 20px;
 }
 
 .palette {
+    /* Properties for the image palette */
     position: absolute;
     top: 325px;
     left: 10px;
-    width: 350px;
-    height: 170px;
-    background:red;
+    width: 330px;
+    height: 150px;
+    background:grey;
+    border: 3px solid black;
+}
+
+.palette-text {
+    /* Properties for the text in the palette */
+    color: white;
+    font-family: 'OperationGuideFont', sans-serif;
+    font-weight: normal;
+    text-align: left;
+    padding-left: 5px;
 }
 
 .palette-image {
+    /* Properties for the images in the palette */
     width: 26px;
     height: auto;
     margin: 5px;
-    cursor: grab; 
+    cursor: grab;
+}
+
+.control-style-selector {
+    /* Properties for the control style dropdown menu */
+    position: absolute;
+    top: 500px;
+    left: 10px;
 }

@@ -8,7 +8,7 @@
     </head>
     <body>
         <div class="screenshot-box"></div>
-        <h1>This game uses the Wii Remote in horizontal style.</h1>
+        <h1 id="header-text">This game uses the Wii Remote in horizontal style.</h1>
         <table>
             <thead>
                 <!-- The header row of the table. -->
@@ -32,7 +32,15 @@
         <button id="remove-row-btn">Remove Row</button>
         <!-- Image palette for dragging images into the table -->
         <div id="image-palette" class="palette">
-            <p>Drag and Drop Images Here:</p>
+            <p class="palette-text"> Drag and Drop Images Here:</p>
+        </div>
+        <div class="control-style-selector">
+            <label for="control-style">Select the controller style:</label>
+            <select id="control-style">
+                <option value="This game uses the Wii Remote in horizontal style.">Wii Remote (Horizontal)</option>
+                <option value="This game uses the Wii Remote in vertical style.">Wii Remote (Vertical)</option>
+                <option value="This game requires the Wii Classic Controller.">Wii Classic Controller</option>
+            </select>
         </div>
         <!-- Import JavaScript Scripts -->
         <script src="script.js"></script>

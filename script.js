@@ -273,6 +273,15 @@ function script() {
     const removeBtn = document.getElementById('remove-row-btn');
     if (addBtn) addBtn.addEventListener('click', addRow);
     if (removeBtn) removeBtn.addEventListener('click', removeRow);
+
+    // Get the dropdown and header elements
+    const controlStyleSelect = document.getElementById('control-style');
+    const headerText = document.getElementById('header-text');
+
+    // Update header when dropdown changes
+    controlStyleSelect.addEventListener('change', function() {
+        headerText.textContent = this.value;
+    });
 }
 
 // Execute the script when the file loads
