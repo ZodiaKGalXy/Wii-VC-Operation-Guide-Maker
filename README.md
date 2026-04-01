@@ -5,11 +5,13 @@ My project was made completely from <a href="https://github.com/search?q=user%3A
 
 The tool has icons ranging from the Wii Remote and Classic Controller, no Nunchuk buttons were necessary.
 
-It's a simple website, but also comes with these features:
+Features:
 - Icon recongition for user input
 - Editable table cells
 - Screenshot box margin
 - Drag and Drop images box
+- Buttons to add and remove rows
+- Header dropdown menu
 - _NOTE: More features will be added soon._
 
 Visit the website here: [https://zodiakgalxy.github.io/Wii-VC-Operation-Guide-Maker/](https://zodiakgalxy.github.io/Wii-VC-Operation-Guide-Maker/)
