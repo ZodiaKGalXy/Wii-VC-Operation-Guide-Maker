@@ -114,7 +114,18 @@ table, th, td {
     /* Properties for the remove button style */
     position: absolute;
     top: 310px;
-    left: 110px;
+    left: 105px;
+    padding: 8px 16px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-radius: 20px;
+}
+
+#clear-content-btn {
+    /* Properties for the clear content button style */
+    position: absolute;
+    top: 310px;
+    left: 227px;
     padding: 8px 16px;
     margin-top: 0;
     margin-bottom: 10px;
@@ -154,4 +165,8 @@ table, th, td {
     position: absolute;
     top: 270px;
     left: 10px;
+}
+
+.recycle-bin {
+    /* Properties for the control style dropdown menu */
 }
