@@ -10,8 +10,9 @@ Features:
 - Editable table cells
 - Screenshot box margin
 - Drag and Drop images box
-- Buttons to add and remove rows
+- Add / remove rows, and clear content buttons
 - Header dropdown menu
+- Recycle bin for removing images from their cells
 - _NOTE: More features will be added soon._
 
 Visit the website here: [https://zodiakgalxy.github.io/Wii-VC-Operation-Guide-Maker/](https://zodiakgalxy.github.io/Wii-VC-Operation-Guide-Maker/)
