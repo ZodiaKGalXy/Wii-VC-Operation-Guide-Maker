@@ -167,6 +167,12 @@ table, th, td {
     left: 10px;
 }
 
-.recycle-bin {
+.recycle-bin img{
     /* Properties for the control style dropdown menu */
+    position: absolute;
+    display: block;
+    top: 353px;
+    left: 350px;
+    max-width: 160px;
+    height: auto;
 }

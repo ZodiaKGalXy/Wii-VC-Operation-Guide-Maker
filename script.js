@@ -112,6 +112,8 @@ function addRow() {
             // Update alt text if needed
             const data = cellData.find(item => item.imageUrl === droppedSrc);
             if (data) img.alt = data.text;
+            // Make the image draggable
+            setupImage(img);
             fillTextCellFromImage();
         }
     });
@@ -131,6 +133,8 @@ function addRow() {
             // Update alt if possible
             const data = cellData.find(item => item.imageUrl === text);
             if (data) img.alt = data.text;
+            // Make the image draggable
+            setupImage(img);
             fillTextCellFromImage();
         }
     });
@@ -198,6 +202,55 @@ function handleDragStart(e) {
     e.dataTransfer.setData('text/plain', e.target.src);
 }
 
+// Handle drag start for images in table cells
+function handleImageDragStart(e) {
+    // Store the row index in the data transfer
+    const cell = e.target.parentElement; // td
+    const row = cell.parentElement; // tr
+    const tbody = row.parentElement;
+    const rowIndex = Array.from(tbody.children).indexOf(row);
+    e.dataTransfer.setData('text/plain', rowIndex.toString());
+}
+
+// Setup image to be draggable
+function setupImage(img) {
+    img.draggable = true;
+    img.addEventListener('dragstart', handleImageDragStart);
+}
+
+// Handle drop on recycle bin
+function handleRecycleDrop(e) {
+    e.preventDefault();
+    const rowIndex = parseInt(e.dataTransfer.getData('text/plain'));
+    if (!isNaN(rowIndex)) {
+        const tbody = document.querySelector('tbody');
+        const row = tbody.children[rowIndex];
+        if (row) {
+            // Clear image cell
+            const imageCell = row.querySelector('.Image-Column');
+            if (imageCell) {
+                const img = imageCell.querySelector('.Image-Cell');
+                if (img) img.remove();
+            }
+            // Clear input cell
+            const inputCell = row.querySelector('.Input-Column');
+            if (inputCell) inputCell.textContent = '';
+        }
+    }
+}
+
+// Clear content button functionality
+function clearContent() {
+    const tbody = document.querySelector('tbody');
+    if (!tbody) return;
+    const cells = tbody.querySelectorAll('td');
+    cells.forEach(cell => {
+        cell.textContent = '';
+        const img = cell.querySelector('img');
+        if (img) img.remove();
+    });
+}
+
 // Make image cells droppable and handle drops
 function makeCellsDroppable() {
     const imageCells = document.querySelectorAll('td.Image-Column');
@@ -222,6 +275,8 @@ function makeCellsDroppable() {
                 // Update alt text if needed
                 const data = cellData.find(item => item.imageUrl === droppedSrc);
                 if (data) img.alt = data.text;
+                // Make the image draggable
+                setupImage(img);
                 // Update the text in the User Input column for this row
                 fillTextCellFromImage();  // Re-run to update text based on new image
             }
@@ -242,6 +297,8 @@ function makeCellsDroppable() {
                 // Update alt if possible
                 const data = cellData.find(item => item.imageUrl === text);
                 if (data) img.alt = data.text;
+                // Make the image draggable
+                setupImage(img);
                 fillTextCellFromImage();
             }
         });
@@ -254,6 +311,10 @@ function script() {
     noEnterKeyInCells();
     populatePalette();
     makeCellsDroppable();
+
+    // Make existing images draggable
+    const existingImages = document.querySelectorAll('.Image-Cell');
+    existingImages.forEach(setupImage);
 
     // Make all image columns editable (only td, not th)
     const imageColumns = document.querySelectorAll('td.Image-Column');
@@ -271,8 +332,17 @@ function script() {
     // Add event listeners for the buttons
     const addBtn = document.getElementById('add-row-btn');
     const removeBtn = document.getElementById('remove-row-btn');
+    const clearBtn = document.getElementById('clear-content-btn');
     if (addBtn) addBtn.addEventListener('click', addRow);
     if (removeBtn) removeBtn.addEventListener('click', removeRow);
+    if (clearBtn) clearBtn.addEventListener('click', clearContent);
+
+    // Make recycle bin droppable
+    const recycleBin = document.querySelector('.recycle-bin');
+    if (recycleBin) {
+        recycleBin.addEventListener('dragover', e => e.preventDefault());
+        recycleBin.addEventListener('drop', handleRecycleDrop);
+    }
 
     // Get the dropdown and header elements
     const controlStyleSelect = document.getElementById('control-style');
