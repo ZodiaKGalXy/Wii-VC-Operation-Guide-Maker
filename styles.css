@@ -12,7 +12,7 @@ html{
 }
 h1{
     /* Properties for the header element */
-    color:black;
+    color:white;
     font-family: 'OperationGuideFont', sans-serif;
     font-weight: normal;
     font-size: 17px;
@@ -58,6 +58,7 @@ p, label {
     width: 235px;
     height: 30px;
     padding-left: 10px;
+    color: white;
 }
 
 .Text-Column-Font{
@@ -75,7 +76,7 @@ p, label {
 
 table, th, td {
     /* Properties for the created table */
-    border: 1px solid black;
+    border: 1px solid white;
     border-collapse: collapse;
     table-layout: fixed;
 }
@@ -85,21 +86,23 @@ table, th, td {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 556px;
-    height: 259px;
-    border-right: 1px dashed red;
-    border-bottom: 1px dashed red;
+    width: 560px;
+    height: 260px;
+    border-right: 3px dotted red;
+    border-bottom: 3px dotted red;
     border-top: none;
     border-left: none;
-    background: transparent;
+    background: black;
     box-sizing: border-box;
     pointer-events: none;
+    /* Place it behind other elements */
+    z-index: -1;
 }
 
 #add-row-btn {
     /* Properties for the add button style */
     position: absolute;
-    top: 270px;
+    top: 310px;
     left: 10px;
     padding: 8px 16px;
     margin-top: 0;
@@ -109,7 +112,7 @@ table, th, td {
 #remove-row-btn {
     /* Properties for the remove button style */
     position: absolute;
-    top: 270px;
+    top: 310px;
     left: 110px;
     padding: 8px 16px;
     margin-top: 0;
@@ -120,7 +123,7 @@ table, th, td {
 .palette {
     /* Properties for the image palette */
     position: absolute;
-    top: 325px;
+    top: 355px;
     left: 10px;
     width: 330px;
     height: 150px;
@@ -148,6 +151,6 @@ table, th, td {
 .control-style-selector {
     /* Properties for the control style dropdown menu */
     position: absolute;
-    top: 500px;
+    top: 270px;
     left: 10px;
 }
