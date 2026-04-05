@@ -103,7 +103,7 @@ table, th, td {
 #add-row-btn {
     /* Properties for the add button style */
     position: absolute;
-    top: 310px;
+    top: 470px;
     left: 10px;
     padding: 8px 16px;
     margin-top: 0;
@@ -113,8 +113,8 @@ table, th, td {
 #remove-row-btn {
     /* Properties for the remove button style */
     position: absolute;
-    top: 310px;
-    left: 105px;
+    top: 510px;
+    left: 10px;
     padding: 8px 16px;
     margin-top: 0;
     margin-bottom: 10px;
@@ -124,8 +124,8 @@ table, th, td {
 #clear-content-btn {
     /* Properties for the clear content button style */
     position: absolute;
-    top: 310px;
-    left: 227px;
+    top: 550px;
+    left: 10px;
     padding: 8px 16px;
     margin-top: 0;
     margin-bottom: 10px;
@@ -135,7 +135,7 @@ table, th, td {
 .palette {
     /* Properties for the image palette */
     position: absolute;
-    top: 355px;
+    top: 305px;
     left: 10px;
     width: 330px;
     height: 150px;
@@ -163,7 +163,7 @@ table, th, td {
 .control-style-selector {
     /* Properties for the control style dropdown menu */
     position: absolute;
-    top: 270px;
+    top: 260px;
     left: 10px;
 }
 
@@ -171,7 +171,7 @@ table, th, td {
     /* Properties for the control style dropdown menu */
     position: absolute;
     display: block;
-    top: 353px;
+    top: 303px;
     left: 350px;
     max-width: 160px;
     height: auto;

@@ -11,16 +11,16 @@
 
 const cellData = [
     // Classic Controller Buttons
-    { imageUrl: "./img/WiiClassicA.png", text: "Classic Controller A" },
-    { imageUrl: "./img/WiiClassicB.png", text: "Classic Controller B" },
-    { imageUrl: "./img/WiiClassicL.png", text: "Classic Controller L" },
-    { imageUrl: "./img/WiiClassicR.png", text: "Classic Controller R" },
-    { imageUrl: "./img/WiiClassicX.png", text: "Classic Controller X" },
-    { imageUrl: "./img/WiiClassicY.png", text: "Classic Controller Y" },
-    { imageUrl: "./img/WiiClassicZL.png", text: "Classic Controller ZL" },
-    { imageUrl: "./img/WiiClassicZR.png", text: "Classic Controller ZR" },
-    { imageUrl: "./img/WiiClassicSTART.png", text: "Classic Controller START" },
-    { imageUrl: "./img/WiiClassicSELECT.png", text: "Classic Controller SELECT" },
+    { imageUrl: "./img/WiiClassicA.png", text: "Wii Classic A" },
+    { imageUrl: "./img/WiiClassicB.png", text: "Wii Classic B" },
+    { imageUrl: "./img/WiiClassicL.png", text: "Wii Classic L" },
+    { imageUrl: "./img/WiiClassicR.png", text: "Wii Classic R" },
+    { imageUrl: "./img/WiiClassicX.png", text: "Wii Classic X" },
+    { imageUrl: "./img/WiiClassicY.png", text: "Wii Classic Y" },
+    { imageUrl: "./img/WiiClassicZL.png", text: "Wii Classic ZL" },
+    { imageUrl: "./img/WiiClassicZR.png", text: "Wii Classic ZR" },
+    { imageUrl: "./img/WiiClassicSTART.png", text: "Wii Classic START" },
+    { imageUrl: "./img/WiiClassicSELECT.png", text: "Wii Classic SELECT" },
     // Wii Remote Buttons
     { imageUrl: "./img/WiiRemoteA.png", text: "Wii Remote A" },
     { imageUrl: "./img/WiiRemoteB.png", text: "Wii Remote B" },

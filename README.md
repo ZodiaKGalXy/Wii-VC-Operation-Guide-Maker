@@ -15,4 +15,8 @@ Features:
 - Recycle bin for removing images from their cells
 - _NOTE: More features will be added soon._
 
+To translate text according to all available Virtual Console languages, simply use your browser's integrated translation features.
+
+The D-Pad can be identified with rounded brackets followed by one these arrows, ex. (↑↓←→). In the Game Results column within the row of the D-Pad, you identify each arrow with a word and then a comma, ex. (Jump, Duck, Move Left/Right).
+
 Visit the website here: [https://zodiakgalxy.github.io/Wii-VC-Operation-Guide-Maker/](https://zodiakgalxy.github.io/Wii-VC-Operation-Guide-Maker/)
